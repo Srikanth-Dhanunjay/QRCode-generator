@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generated QRCode</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="qrlogo">
+        <img src="Logo.svg" alt="logoimage">
+    </div>
+    <div class="qrimage">
+        <div class="qr"></div>
+    </div>
+    <div class="buttons">
+        <button id="download" class="btn">
+            <p>Download</p>
+            <img src="Load_circle_duotone.svg" alt="arrowdown">
+        </button>
+        <button id="share" class="btn">
+            <p>Share</p>
+            <img src="link_alt.svg" alt="link">
+        </button>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+        const qr_url=sessionStorage.getItem("qrurl");
+        if(qr_url){
+            const qrcode=new QRCode(document.querySelector(".qr"),{
+                text: qr_url,
+                width: 260,
+                height: 260
+            });
+        }
+
+        document.getElementById("download").addEventListener("click",()=>{
+            const qrCanvas=document.querySelector(".qr canvas");
+            if(qrCanvas){
+                const link=document.createElement("a");
+                link.href=qrCanvas.toDataURL("image/png"); 
+                link.download="qrcode.png";
+                link.click();
+            }
+        })
+        document.getElementById("share").addEventListener("click",()=>{
+            const canvas=document.querySelector(".qr canvas");
+            if(canvas && navigator.canShare){
+                canvas.toBlob((blob)=>{
+                    const file=new File([blob],"qrcode.png",{type: "image/png"});
+                    if(navigator.canShare({files:[file]})){
+                        navigator.share({
+                            files: [file],
+                            title: "Check this out",
+                            text: "Scan this QR"
+                        });
+                    }
+                });
+            }
+            else{
+                navigator.clipboard.writeText(qr_url).then(()=>{
+                    alert("Link copied to clipboard");
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    background-image: url('qa-bg-small.jpg');
+    background-size: cover;
+}
+.logo{
+    margin: 256px auto 0 auto;
+    text-align: center;
+}
+.input{
+    margin: 40px auto 0 auto;
+    position: relative;
+    width: 700px;
+}
+.input input[type="text"]{
+    width: 100%;
+    background-color: #030616;
+    padding: 30px;
+    border: 3px solid #263FA9;
+    border-radius: 20px;
+    color: #FAFAF9;
+    font-size: 16px;
+}
+input::placeholder{
+    color: #FAFAF9;
+    font-size: 16px;
+}
+#qrbtn{
+    background-color: #263FA9;
+    color: #FAFAF9;
+    border: none;
+    font-size: 16px;
+    padding: 20px 40px;
+    border-radius: 15px;
+    cursor: pointer;
+    position: absolute;
+    right: 2%;
+    top: 10px;
+}
+input:focus{
+    outline: 1px solid #263FA9;
+}
+
+@media screen and (max-width: 720px) {
+    .input{
+        width: 95%;
+    }
+    #qrbtn{
+        padding: 20px 30px;
+    }
+}
+
+/* qr code generated page */
+.qrlogo{
+    margin: 50px auto 80px auto;
+    text-align: center;
+}
+.qrimage{
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    margin: 0 auto;
+    background-color: #F8FAFC1A;
+    padding: 40px;
+}
+.buttons{
+    width: 70%;
+    display: flex;
+    margin: 70px auto;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+.btn{
+    background-color: #263FA9;
+    color: #FAFAF9;
+    border: none;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 50px;
+    font-size: 1rem;
+    gap: 10px;
+    cursor: pointer;
+}
+.qr{
+    width: 300px;
+    height: 300px;
+    background-color: #F2F5F9;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+@media screen and (max-width: 455px) {
+    .btn{
+        padding-right: 30px;
+    }
+    .buttons{
+        width: 90%;
+    }
+}

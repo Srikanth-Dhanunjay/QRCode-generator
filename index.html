@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QR Generator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="logo">
+      <img src="Logo.svg" alt="logoimage" />
+    </div>
+    <div class="input">
+      <input type="text" placeholder="Enter an url" id="inputurl" autocomplete="off" />
+      <button id="qrbtn">QR code</button>
+    </div>
+    <script>
+      let qrbtn = document.getElementById("qrbtn");
+      let inputurl=document.getElementById("inputurl");
+      qrbtn.addEventListener("click", saveurl);
+      inputurl.addEventListener("keydown",(e)=>{
+        if(e.key==='Enter'){
+          saveurl();
+        }
+      })
+      function saveurl(){
+        let url = document.getElementById("inputurl").value.trim();
+        if (url !== "" && url.includes(".")) {
+          if(!(url.startsWith("http://")|| url.startsWith("https://") || url.startsWith("www."))) url="https://"+url;
+          sessionStorage.setItem("qrurl", url);
+          window.location.href = "qr.html";
+        }
+        else{
+          alert("Enter valid url!")
+        }
+      }
+    </script>
+  </body>
+</html>
